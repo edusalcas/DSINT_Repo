@@ -1,4 +1,4 @@
-; Tue Oct 08 17:04:59 CEST 2019
+; Tue Oct 08 17:27:54 CEST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -63,7 +63,7 @@
 
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([KB_360507_Class0] of  Map
+([KB_359349_Class0] of  Map
 )
 
 ([KB_464704_Class0] of  String

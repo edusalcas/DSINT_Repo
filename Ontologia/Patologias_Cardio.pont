@@ -1,4 +1,4 @@
-; Tue Oct 08 17:04:59 CEST 2019
+; Tue Oct 08 17:27:54 CEST 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -10,6 +10,15 @@
 	(single-slot Pulsaciones+por+minuto
 		(type INTEGER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ondas
+		(type SYMBOL)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Patologias_Cardio_Class1
+		(type SYMBOL)
+;+		(allowed-parents Ondas)
+;+		(cardinality 5 1)
 		(create-accessor read-write)))
 
 (defclass Cardiolog%C3%ADa
@@ -18,38 +27,35 @@
 
 (defclass Electrocardiograma
 	(is-a Cardiolog%C3%ADa)
-	(role concrete))
-
-(defclass Ciclo
-	(is-a Electrocardiograma)
 	(role concrete)
-	(single-slot Pulsaciones+por+minuto
-		(type INTEGER)
-;+		(cardinality 0 1)
+	(single-slot Patologias_Cardio_Class1
+		(type SYMBOL)
+;+		(allowed-parents Ondas)
+;+		(cardinality 5 1)
 		(create-accessor read-write)))
 
-(defclass Waves
-	(is-a Ciclo)
+(defclass Ondas
+	(is-a Cardiolog%C3%ADa)
 	(role concrete))
 
 (defclass P
-	(is-a Waves)
+	(is-a Ondas)
 	(role concrete))
 
 (defclass Q
-	(is-a Waves)
-	(role concrete))
-
-(defclass R
-	(is-a Waves)
-	(role concrete))
-
-(defclass S
-	(is-a Waves)
+	(is-a Ondas)
 	(role concrete))
 
 (defclass T
-	(is-a Waves)
+	(is-a Ondas)
+	(role concrete))
+
+(defclass R
+	(is-a Ondas)
+	(role concrete))
+
+(defclass S
+	(is-a Ondas)
 	(role concrete))
 
 (defclass Patolog%C3%ADa
