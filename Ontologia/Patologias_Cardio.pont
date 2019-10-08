@@ -1,0 +1,101 @@
+; Tue Oct 08 17:04:59 CEST 2019
+; 
+;+ (version "3.5")
+;+ (build "Build 660")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(single-slot Pulsaciones+por+minuto
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Cardiolog%C3%ADa
+	(is-a USER)
+	(role concrete))
+
+(defclass Electrocardiograma
+	(is-a Cardiolog%C3%ADa)
+	(role concrete))
+
+(defclass Ciclo
+	(is-a Electrocardiograma)
+	(role concrete)
+	(single-slot Pulsaciones+por+minuto
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Waves
+	(is-a Ciclo)
+	(role concrete))
+
+(defclass P
+	(is-a Waves)
+	(role concrete))
+
+(defclass Q
+	(is-a Waves)
+	(role concrete))
+
+(defclass R
+	(is-a Waves)
+	(role concrete))
+
+(defclass S
+	(is-a Waves)
+	(role concrete))
+
+(defclass T
+	(is-a Waves)
+	(role concrete))
+
+(defclass Patolog%C3%ADa
+	(is-a Cardiolog%C3%ADa)
+	(role concrete))
+
+(defclass Patrones+simples
+	(is-a Patolog%C3%ADa)
+	(role concrete))
+
+(defclass Hipopotasemia
+	(is-a Patrones+simples)
+	(role concrete))
+
+(defclass Hipocalcemia
+	(is-a Patrones+simples)
+	(role concrete))
+
+(defclass Infarto+Agudo+de+Miocardio+temprano
+	(is-a Patrones+simples)
+	(role concrete))
+
+(defclass Isquemia+Coronaria
+	(is-a Patrones+simples)
+	(role concrete))
+
+(defclass Patrones+complejo
+	(is-a Patolog%C3%ADa)
+	(role concrete))
+
+(defclass Bradicardia+Sinus
+	(is-a Patrones+complejo)
+	(role concrete))
+
+(defclass Tachycardia+Sinus
+	(is-a Patrones+complejo)
+	(role concrete))
+
+(defclass Atrial+Flutter
+	(is-a Patrones+complejo)
+	(role concrete))
+
+(defclass Premature+Ventricular+Contraction
+	(is-a Patrones+complejo)
+	(role concrete))
+
+(defclass Estimating+the+Heart+Rate
+	(is-a Patrones+complejo)
+	(role concrete))
