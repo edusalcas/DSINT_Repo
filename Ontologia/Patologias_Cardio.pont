@@ -1,4 +1,4 @@
-; Tue Oct 08 17:27:54 CEST 2019
+; Sun Oct 27 12:15:09 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -7,36 +7,115 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
+	(single-slot Patologias_Cardio_Class10009
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Patologias_Cardio_Class10007
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Fin
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot ppm
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Amplitud
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Patologias_Cardio_Class1
+		(type SYMBOL)
+;+		(allowed-parents Ondas)
+;+		(cardinality 5 1)
+		(create-accessor read-write))
+	(single-slot Onda_T
+		(type SYMBOL)
+;+		(allowed-parents T)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Onda_S
+		(type SYMBOL)
+;+		(allowed-parents S)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Onda_R
+		(type SYMBOL)
+;+		(allowed-parents R)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Onda_Q
+		(type SYMBOL)
+;+		(allowed-parents Q)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Onda_P
+		(type SYMBOL)
+;+		(allowed-parents P)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot Pulsaciones+por+minuto
 		(type INTEGER)
 ;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Pico
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot _Ondas
+		(type SYMBOL)
+;+		(allowed-parents Ondas)
+		(cardinality 5 5)
 		(create-accessor read-write))
 	(single-slot ondas
 		(type SYMBOL)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot Patologias_Cardio_Class1
+	(single-slot Patologias_Cardio_Class10018
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot ciclos
 		(type SYMBOL)
-;+		(allowed-parents Ondas)
-;+		(cardinality 5 1)
+;+		(allowed-parents Ciclo)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Inicio
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Cardiolog%C3%ADa
-	(is-a USER)
-	(role concrete))
-
 (defclass Electrocardiograma
-	(is-a Cardiolog%C3%ADa)
+	(is-a USER)
 	(role concrete)
-	(single-slot Patologias_Cardio_Class1
+	(single-slot ppm
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(multislot ciclos
 		(type SYMBOL)
-;+		(allowed-parents Ondas)
-;+		(cardinality 5 1)
+;+		(allowed-parents Ciclo)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
 (defclass Ondas
-	(is-a Cardiolog%C3%ADa)
-	(role concrete))
+	(is-a USER)
+	(role concrete)
+	(single-slot Fin
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Pico
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Inicio
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass P
 	(is-a Ondas)
@@ -58,8 +137,16 @@
 	(is-a Ondas)
 	(role concrete))
 
+(defclass Intervalos
+	(is-a USER)
+	(role concrete))
+
+(defclass Intervalo+QT
+	(is-a Intervalos)
+	(role concrete))
+
 (defclass Patolog%C3%ADa
-	(is-a Cardiolog%C3%ADa)
+	(is-a USER)
 	(role concrete))
 
 (defclass Patrones+simples
@@ -105,3 +192,32 @@
 (defclass Estimating+the+Heart+Rate
 	(is-a Patrones+complejo)
 	(role concrete))
+
+(defclass Ciclo
+	(is-a USER)
+	(role concrete)
+	(single-slot Onda_T
+		(type SYMBOL)
+;+		(allowed-parents T)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Onda_S
+		(type SYMBOL)
+;+		(allowed-parents S)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Onda_R
+		(type SYMBOL)
+;+		(allowed-parents R)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Onda_Q
+		(type SYMBOL)
+;+		(allowed-parents Q)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Onda_P
+		(type SYMBOL)
+;+		(allowed-parents P)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
