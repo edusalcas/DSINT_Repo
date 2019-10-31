@@ -1,4 +1,4 @@
-; Sun Oct 27 12:15:09 CET 2019
+; Thu Oct 31 17:27:59 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -169,28 +169,28 @@
 	(is-a Patrones+simples)
 	(role concrete))
 
-(defclass Patrones+complejo
+(defclass Patrones+complejos
 	(is-a Patolog%C3%ADa)
 	(role concrete))
 
 (defclass Bradicardia+Sinus
-	(is-a Patrones+complejo)
+	(is-a Patrones+complejos)
 	(role concrete))
 
 (defclass Tachycardia+Sinus
-	(is-a Patrones+complejo)
+	(is-a Patrones+complejos)
 	(role concrete))
 
 (defclass Atrial+Flutter
-	(is-a Patrones+complejo)
+	(is-a Patrones+complejos)
 	(role concrete))
 
 (defclass Premature+Ventricular+Contraction
-	(is-a Patrones+complejo)
+	(is-a Patrones+complejos)
 	(role concrete))
 
 (defclass Estimating+the+Heart+Rate
-	(is-a Patrones+complejo)
+	(is-a Patrones+complejos)
 	(role concrete))
 
 (defclass Ciclo
