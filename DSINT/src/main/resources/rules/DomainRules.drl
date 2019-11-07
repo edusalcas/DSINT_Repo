@@ -1,0 +1,14 @@
+//created on: 4 nov. 2019
+package domain
+
+import ecgParser.Data;
+import domain.Wave;
+
+rule "Wave Creation"
+    when
+        $d: Data()
+    then
+        Wave $wave = new Wave($d.getStart(), $d.getEnd(), $d.getPeak(), $d.getLetter());
+        System.out.println("Se ha creado una nueva onda " + $wave.getType());
+        insert($wave);
+end

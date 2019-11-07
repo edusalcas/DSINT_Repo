@@ -5,6 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
+
 public class Parser {
 
 	private static BufferedReader reader;
@@ -18,6 +22,14 @@ public class Parser {
 	}
 
 	public static void readFile(String fileName) {
+		int actualCycle = 0;
+		
+		KieServices ks = KieServices.Factory.get();
+		KieContainer kContainer = ks.getKieClasspathContainer();
+	    System.out.println(kContainer.verify().getMessages().toString());
+	    
+	    KieSession kSession = kContainer.newKieSession("ksession-rules");
+
 		try {
 			openFile(fileName);
 			
@@ -38,12 +50,17 @@ public class Parser {
 			// Leemos todos los ciclos del ECG
 			line = reader.readLine();
 			while (line != null) {
-				String [] data= line.replaceAll("[A-Z()]", "").split(",");
-				// TODO : Almacena cada uno de los tres datos en sus respectivos slots.
-				System.out.println(data[0] + " " + data[1] + " " + data[2]);
+				char letter = line.charAt(0);
+				if (letter == 'P')
+					actualCycle++;
+				String [] dataArray = line.replaceAll("[A-Z()]", "").split(",");
+				Data data = new Data(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]), Float.valueOf(dataArray[2]), letter);
+				//System.out.println(letter + " " + dataArray[0] + " " + dataArray[1] + " " + dataArray[2]);
+				kSession.insert(data);
 				line = reader.readLine();
 			}
-			
+			kSession.fireAllRules();
+			System.out.println("Ya se ha leido el fichero");
 			closeFile();
 		} catch (FileNotFoundException e) {
 			System.err.println(fileName + " no es un nombre no valido");
