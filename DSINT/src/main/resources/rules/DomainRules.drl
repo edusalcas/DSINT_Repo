@@ -3,12 +3,26 @@ package domain
 
 import ecgParser.Data;
 import domain.Wave;
+import domain.Cycle;
 
 rule "Wave Creation"
     when
         $d: Data()
     then
-        Wave $wave = new Wave($d.getStart(), $d.getEnd(), $d.getPeak(), $d.getLetter());
+        Wave $wave = new Wave($d.getStart(), $d.getEnd(), $d.getPeak(), $d.getLetter(), $d.getCycle());
         System.out.println("Se ha creado una nueva onda " + $wave.getType());
         insert($wave);
+end
+
+rule "Cycle Creation"
+	when
+		$w1: Wave(type == WaveType.P)
+		$w2: Wave(type == WaveType.Q)
+		$w3: Wave(type == WaveType.R)
+		$w4: Wave(type == WaveType.S) 
+		$w5: Wave(type == WaveType.T)
+		$w1.getCycle() == $w2.getCycle() == $w3.getCycle() == $w4.getCycle() == $w5.getCycle()
+	then
+		Cycle cy = new Cycle ($w1.getCycle(), $w1, $w2, $w3, $w4, $w5);
+		System.out.println("Se ha creado el ciclo numero " + cy.getCycle());
 end

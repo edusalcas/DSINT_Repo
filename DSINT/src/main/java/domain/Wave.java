@@ -2,16 +2,24 @@ package domain;
 
 public class Wave {
 
-	private int start;
-	private int end;
+	private int start, end, cycle;
 	private float peak;
 	private WaveType type;
 
-	public Wave(int start, int end, float peak, char type) {
+	public Wave(int start, int end, float peak, char type, int cycle) {
 		this.start = start;
 		this.end = end;
 		this.peak = peak;
 		this.type = char2WaveType(type);
+		this.cycle = cycle;
+	}
+
+	public int getCycle() {
+		return cycle;
+	}
+
+	public void setCycle(int cycle) {
+		this.cycle = cycle;
 	}
 
 	private WaveType char2WaveType(char type2) {

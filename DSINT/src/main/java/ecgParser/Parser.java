@@ -54,7 +54,7 @@ public class Parser {
 				if (letter == 'P')
 					actualCycle++;
 				String [] dataArray = line.replaceAll("[A-Z()]", "").split(",");
-				Data data = new Data(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]), Float.valueOf(dataArray[2]), letter);
+				Data data = new Data(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]), Float.valueOf(dataArray[2]), letter, actualCycle);
 				//System.out.println(letter + " " + dataArray[0] + " " + dataArray[1] + " " + dataArray[2]);
 				kSession.insert(data);
 				line = reader.readLine();

@@ -3,23 +3,30 @@ package ecgParser;
 public class Data {
 
 	// Atributos
-	private int start;
-	private int end;
+	private int start, end, cycle;
 	private float peak;
 	private char letter;
-	
+
 	// Constructor
-	public Data(int start, int end, float peak, char letter) {
+	public Data(int start, int end, float peak, char letter, int cycle) {
 		this.start = start;
 		this.end = end;
 		this.peak = peak;
 		this.letter = letter;
+		this.cycle = cycle;
 	}
 
-	
 	// Getters and Setters
 	public int getStart() {
 		return start;
+	}
+
+	public int getCycle() {
+		return cycle;
+	}
+
+	public void setCycle(int cycle) {
+		this.cycle = cycle;
 	}
 
 	public void setStart(int start) {
