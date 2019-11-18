@@ -1,5 +1,4 @@
 /rules/
-/tests/
-/ecgParser/
-/META-INF/
 /domain/
+/ecgParser/
+/tests/

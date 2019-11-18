@@ -9,6 +9,8 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
+import domain.*;
+
 public class Parser {
 
 	private static BufferedReader reader;
@@ -23,16 +25,16 @@ public class Parser {
 
 	public static void readFile(String fileName) {
 		int actualCycle = 0;
-		
+
 		KieServices ks = KieServices.Factory.get();
 		KieContainer kContainer = ks.getKieClasspathContainer();
-	    System.out.println(kContainer.verify().getMessages().toString());
-	    
-	    KieSession kSession = kContainer.newKieSession("ksession-rules");
+		System.out.println(kContainer.verify().getMessages().toString());
+
+		KieSession kSession = kContainer.newKieSession("ksession-rules");
 
 		try {
 			openFile(fileName);
-			
+
 			// Ignoramos la primera linea
 			String line = reader.readLine();
 			// Obtenemos el numero de ciclos
@@ -41,22 +43,48 @@ public class Parser {
 			// Obtenemos el ritmo cardiaco
 			line = reader.readLine();
 			int hRate = Integer.valueOf(line.replaceAll("\\D+", ""));
-			
+
 			System.out.println("El numero de ciclos es " + cycles + " y el ritmo cardiaco es " + hRate);
-			
+
 			// Ignoramos la linea en blanco
 			reader.readLine();
-			
+
 			// Leemos todos los ciclos del ECG
 			line = reader.readLine();
 			while (line != null) {
 				char letter = line.charAt(0);
 				if (letter == 'P')
 					actualCycle++;
-				String [] dataArray = line.replaceAll("[A-Z()]", "").split(",");
-				Data data = new Data(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]), Float.valueOf(dataArray[2]), letter, actualCycle);
-				//System.out.println(letter + " " + dataArray[0] + " " + dataArray[1] + " " + dataArray[2]);
-				kSession.insert(data);
+				String[] dataArray = line.replaceAll("[A-Z()]", "").split(",");
+
+				Wave wave;
+				switch (letter) {
+				case 'P':
+					wave = new P(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]),
+							Float.valueOf(dataArray[2]), actualCycle);
+					break;
+				case 'Q':
+					wave = new Q(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]),
+							Float.valueOf(dataArray[2]), actualCycle);
+					break;
+				case 'R':
+					wave = new R(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]),
+							Float.valueOf(dataArray[2]), actualCycle);
+					break;
+				case 'S':
+					wave = new S(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]),
+							Float.valueOf(dataArray[2]), actualCycle);
+					break;
+				case 'T':
+					wave = new T(Integer.valueOf(dataArray[0]), Integer.valueOf(dataArray[1]),
+							Float.valueOf(dataArray[2]), actualCycle);
+					break;
+				default:
+					wave = null;
+					break;
+				}
+				
+				kSession.insert(wave);
 				line = reader.readLine();
 			}
 			kSession.fireAllRules();

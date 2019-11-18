@@ -4,13 +4,11 @@ public class Wave {
 
 	private int start, end, cycle;
 	private float peak;
-	private WaveType type;
 
-	public Wave(int start, int end, float peak, char type, int cycle) {
+	public Wave(int start, int end, float peak, int cycle) {
 		this.start = start;
 		this.end = end;
 		this.peak = peak;
-		this.type = char2WaveType(type);
 		this.cycle = cycle;
 	}
 
@@ -20,31 +18,6 @@ public class Wave {
 
 	public void setCycle(int cycle) {
 		this.cycle = cycle;
-	}
-
-	private WaveType char2WaveType(char type2) {
-		switch (type2) {
-		case 'P':
-			return WaveType.P;
-		case 'Q':
-			return WaveType.Q;
-		case 'R':
-			return WaveType.R;
-		case 'S':
-			return WaveType.S;
-		case 'T':
-			return WaveType.T;
-		default:
-			return null;
-		}
-	}
-
-	public WaveType getType() {
-		return type;
-	}
-
-	public void setType(WaveType type) {
-		this.type = type;
 	}
 
 	public int getStart() {
