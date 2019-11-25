@@ -1,0 +1,18 @@
+//created on: 4 nov. 2019
+package domain
+
+import domain.*;
+
+
+rule "Cycle Creation"
+	when
+		$p: P($c : cycle)
+		$q: Q(cycle == $c)
+		$r: R(cycle == $c)
+		$s: S(cycle == $c) 
+		$t: T(cycle == $c)
+	then
+		Cycle cy = new Cycle ($c, $p, $q, $r, $s, $t);
+		insert(cy);
+		System.out.println("Se ha creado el ciclo numero " + $c);
+end

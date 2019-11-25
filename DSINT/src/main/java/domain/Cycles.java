@@ -1,13 +1,11 @@
 package domain;
 
-public class Electro {
+public class Cycles {
 	
 	private int numCycles;
-	private int bpm;
 
-	public Electro(int numCycles, int bpm) {
+	public Cycles(int numCycles) {
 		this.numCycles = numCycles;
-		this.bpm = bpm;
 	}
 
 	public int getNumCycles() {
@@ -17,12 +15,7 @@ public class Electro {
 	public void setNumCycles(int numCycles) {
 		this.numCycles = numCycles;
 	}
+	
+	
 
-	public int getBpm() {
-		return bpm;
-	}
-
-	public void setBpm(int bpm) {
-		this.bpm = bpm;
-	}
 }

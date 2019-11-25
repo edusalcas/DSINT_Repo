@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -39,12 +38,14 @@ public class Parser {
 			String line = reader.readLine();
 			// Obtenemos el numero de ciclos
 			line = reader.readLine();
-			int cycles = Integer.valueOf(line.replaceAll("\\D+", ""));
+			Cycles cycles = new Cycles(Integer.valueOf(line.replaceAll("\\D+", "")));
 			// Obtenemos el ritmo cardiaco
 			line = reader.readLine();
-			int hRate = Integer.valueOf(line.replaceAll("\\D+", ""));
+			BPM bpm = new BPM(Integer.valueOf(line.replaceAll("\\D+", "")));
 
-			System.out.println("El numero de ciclos es " + cycles + " y el ritmo cardiaco es " + hRate);
+			kSession.insert(cycles);
+			kSession.insert(bpm);
+			System.out.println("El numero de ciclos es " + cycles.getNumCycles() + " y el ritmo cardiaco es " + bpm.getBpm());
 
 			// Ignoramos la linea en blanco
 			reader.readLine();

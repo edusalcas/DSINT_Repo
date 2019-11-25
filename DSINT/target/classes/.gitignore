@@ -1,8 +1,2 @@
-/.DS_Store
-/META-INF/
-/com/
-/domain/
 /ecgParser/
-/logback-test.xml
-/rules/
-/tests/
+/domain/
