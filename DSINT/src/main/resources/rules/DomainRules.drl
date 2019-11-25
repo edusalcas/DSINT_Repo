@@ -13,6 +13,6 @@ rule "Cycle Creation"
 		$t: T(cycle == $c)
 	then
 		Cycle cy = new Cycle ($c, $p, $q, $r, $s, $t);
-		insert()
+		insert(cy);
 		System.out.println("Se ha creado el ciclo numero " + $c);
 end
