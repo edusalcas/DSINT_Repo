@@ -43,9 +43,11 @@ public class Parser {
 			line = reader.readLine();
 			BPM bpm = new BPM(Integer.valueOf(line.replaceAll("\\D+", "")));
 
+			//Insertamos el numero de ciclos y el ritmo cardiaco como hechos en nuestra kSession, asi como los datos normales de un ecg
+			kSession.insert(new NormalValues());
 			kSession.insert(cycles);
 			kSession.insert(bpm);
-			System.out.println("El numero de ciclos es " + cycles.getNumCycles() + " y el ritmo cardiaco es " + bpm.getBpm());
+			System.out.println("El numero de ciclos es " + cycles.getNumCycles() + " y el ritmo cardiaco es " + bpm.getBPM());
 
 			// Ignoramos la linea en blanco
 			reader.readLine();
@@ -84,7 +86,6 @@ public class Parser {
 					wave = null;
 					break;
 				}
-				
 				kSession.insert(wave);
 				line = reader.readLine();
 			}

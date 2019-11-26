@@ -16,3 +16,29 @@ rule "Cycle Creation"
 		insert(cy);
 		System.out.println("Se ha creado el ciclo numero " + $c);
 end
+
+rule "Hypokalemia"
+	when
+		//$cy: Cycle(tWave.peak < 0.1, $c : cycle)
+		//$cy2 : Cycle(cycle == $c+1, tWave.peak < 0.1)
+		$nv : NormalValues()
+		$cy: Cycle(tWave.peak < $nv.minPeakWaveT)
+	then
+		System.out.println("TIENES HIPOPOTASEMIA, CORRE!");
+end
+
+rule "Hypokalcemia"
+	when
+		$nv : NormalValues()
+		$cy : Cycle((tWave.end - qWave.start) > $nv.maxQTDuration)
+	then
+		System.out.println("TIENES HIPOCALCEMIA DIOOSSSS, CORRE!");
+end
+
+rule "AMI"
+	when
+		$nv : NormalValues()
+		$cy : Cycle(tWave.peak > $nv.maxPeakWaveT)
+	then
+		System.out.println("QUE TE ME MUEREEEES, INFARTO DE MIOCARDIO AGUDO");
+end
