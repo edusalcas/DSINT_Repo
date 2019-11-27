@@ -7,6 +7,9 @@ public class Cycle {
 	private R rWave;
 	private S sWave;
 	private T tWave;
+	private final QRSComplex qrs;
+	private final STSegment st;
+	private final QTIntervale qt;
 	private int cycle;
 
 	public Cycle(int cycle, P p, Q q, R r, S s, T t) {
@@ -16,6 +19,21 @@ public class Cycle {
 		this.sWave = s;
 		this.tWave = t;
 		this.cycle = cycle;
+		this.qrs = new QRSComplex(q, r, s);
+		this.qt = new QTIntervale(q, r, s, t);
+		this.st = new STSegment(s, t);
+	}
+
+	public QRSComplex getQrs() {
+		return qrs;
+	}
+
+	public STSegment getSt() {
+		return st;
+	}
+
+	public QTIntervale getQt() {
+		return qt;
 	}
 
 	public P getpWave() {
