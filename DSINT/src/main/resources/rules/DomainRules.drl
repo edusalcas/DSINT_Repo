@@ -30,7 +30,7 @@ end
 rule "Hypokalcemia"
 	when
 		$nv : NormalValues()
-		$cy : Cycle((tWave.end - qWave.start) > $nv.maxQTDuration)
+		$cy : Cycle(qt.duration > $nv.maxQTDuration)
 	then
 		System.out.println("TIENES HIPOCALCEMIA DIOOSSSS, CORRE!");
 end
