@@ -4,41 +4,98 @@ package domain
 import domain.*;
 
 
-rule "Cycle Creation"
+rule "QRS Complex Creation"
 	when
-		$p: P($c : cycle)
-		$q: Q(cycle == $c)
+		$q: Q($c : cycle)
 		$r: R(cycle == $c)
 		$s: S(cycle == $c) 
+	then
+		QRSComplex qrs = new QRSComplex($q.getStart(), $s.getEnd(), $c);
+		insert(qrs);
+		System.out.println("Se ha creado el complejo QRS del ciclo numero " + $c);
+end
+
+rule "QT Intervale Creation"
+	when
+		$q: Q($c : cycle)
 		$t: T(cycle == $c)
 	then
-		Cycle cy = new Cycle ($c, $p, $q, $r, $s, $t);
-		insert(cy);
-		System.out.println("Se ha creado el ciclo numero " + $c);
+		QTIntervale qt = new QTIntervale($q.getStart(), $t.getEnd(), $c);
+		insert(qt);
+		System.out.println("Se ha creado el intervalo QT del ciclo numero " + $c);
+end
+
+rule "ST Segment Creation"
+	when
+		$s: S($c : cycle)
+		$t: T(cycle == $c) 
+	then
+		STSegment st = new STSegment($s.getStart(), $t.getEnd(), $c);
+		insert(st);
+		System.out.println("Se ha creado el segmento ST del ciclo numero " + $c);
 end
 
 rule "Hypokalemia"
 	when
-		//$cy: Cycle(tWave.peak < 0.1, $c : cycle)
-		//$cy2 : Cycle(cycle == $c+1, tWave.peak < 0.1)
 		$nv : NormalValues()
-		$cy: Cycle(tWave.peak < $nv.minPeakWaveT)
+		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
 	then
-		System.out.println("TIENES HIPOPOTASEMIA, CORRE!");
+		System.out.println("Tienes indicios de hipopotasemia en el ciclo numero " + $c);
+end
+
+rule "Coronarian Ischemia"
+	when
+		$nv : NormalValues()
+		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
+	then
+		System.out.println("Tienes indicios de isquemia coronaria en el ciclo numero " + $c);
 end
 
 rule "Hypokalcemia"
 	when
 		$nv : NormalValues()
-		$cy : Cycle(qt.duration > $nv.maxQTDuration)
+		$qt : QTIntervale(duration > $nv.maxQTDuration, $c : cycle)
 	then
-		System.out.println("TIENES HIPOCALCEMIA DIOOSSSS, CORRE!");
+		System.out.println("Tienes indicios de hipocalcemia en el ciclo numero " + $c);
 end
 
 rule "AMI"
 	when
 		$nv : NormalValues()
-		$cy : Cycle(tWave.peak > $nv.maxPeakWaveT)
+		$t : T(peak > $nv.maxPeakWaveT, $c : cycle)
 	then
-		System.out.println("QUE TE ME MUEREEEES, INFARTO DE MIOCARDIO AGUDO");
+		System.out.println("Tienes indicios de padecer un infarto de miocardio agudo en el ciclo numero " + $c);
+end
+
+rule "Bradycardia"
+	when
+		$nv : NormalValues()
+		$bpm : BPM($b : bpm , $b < $nv.minBPM)
+	then
+		System.out.println("Tienes indicios de bradicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
+end
+
+rule "Tachycardia"
+	when
+		$nv : NormalValues()
+		$bpm : BPM($b: bpm, $b > $nv.maxBPM)
+	then
+		System.out.println("Tienes indicios de taquicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
+end
+
+rule "Premature Ventricular Contraction"
+	when
+		$nv : NormalValues()
+		$qrs : QRSComplex(duration < $nv.minQRSDuration, $c : cycle)
+	then
+		System.out.println("Tienes indicios de padecer una contraccion prematura del ventriculo en el ciclo numero " + $c);
+end
+
+rule "Atrial Flutter"
+	when
+		$t : T($c : cycle)
+		$p : P(cycle == $c+1, $t.end == $p.start)
+	then
+		System.out.printl("Tienes inidicios de aleteo auricular ya que en el ciclo " + $c + 
+		" tu onda T acaba justo cuando empieza la onda P del siguiente ciclo (" + $p.getStart() + ")");
 end

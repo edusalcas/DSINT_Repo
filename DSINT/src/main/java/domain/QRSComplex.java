@@ -2,8 +2,8 @@ package domain;
 
 public class QRSComplex extends Intervale {
 
-	public QRSComplex(Wave... waves) {
-		super(waves);
+	public QRSComplex(int start, int end, int cycle) {
+		super(start, end, cycle);
 	}
 
 }

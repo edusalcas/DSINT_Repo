@@ -47,7 +47,7 @@ public class Parser {
 			kSession.insert(new NormalValues());
 			kSession.insert(cycles);
 			kSession.insert(bpm);
-			System.out.println("El numero de ciclos es " + cycles.getNumCycles() + " y el ritmo cardiaco es " + bpm.getBPM());
+			System.out.println("El numero de ciclos es " + cycles.getNumCycles() + " y el ritmo cardiaco es " + bpm.getBpm());
 
 			// Ignoramos la linea en blanco
 			reader.readLine();

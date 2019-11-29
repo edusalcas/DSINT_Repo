@@ -2,11 +2,12 @@ package domain;
 
 public class NormalValues {
 	
-	private final int maxBPM = 60;
-	private final int minBPM = 100;
+	private final int minBPM = 60;
+	private final int maxBPM = 100;
 	private final float maxPeakWaveT = 0.55f;
 	private final float minPeakWaveT = 0.1f;
 	private final int maxQTDuration = 420;
+	private final int minQRSDuration = 100;
 	
 	public int getMaxBPM() {
 		return maxBPM;
@@ -22,6 +23,9 @@ public class NormalValues {
 	}
 	public int getMaxQTDuration() {
 		return maxQTDuration;
+	}
+	public int getMinQRSDuration() {
+		return minQRSDuration;
 	}
 
 }

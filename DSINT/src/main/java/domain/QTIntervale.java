@@ -2,8 +2,8 @@ package domain;
 
 public class QTIntervale extends Intervale {
 
-	public QTIntervale(Wave... waves) {
-		super(waves);
+	public QTIntervale(int start, int end, int cycle) {
+		super(start, end, cycle);
 	}
 
 }

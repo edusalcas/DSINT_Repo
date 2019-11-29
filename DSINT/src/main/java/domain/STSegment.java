@@ -2,8 +2,8 @@ package domain;
 
 public class STSegment extends Intervale {
 
-	public STSegment(Wave... waves) {
-		super(waves);
+	public STSegment(int start, int end, int cycle) {
+		super(start, end, cycle);
 	}
 
 }
