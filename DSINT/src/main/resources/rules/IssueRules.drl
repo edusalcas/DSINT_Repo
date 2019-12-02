@@ -1,0 +1,120 @@
+//created on: 2 dic. 2019
+package rules
+
+import domain.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+rule "Hypokalemia"
+	when
+		$i : Issues(hypokalemia == false)
+		$w : PrintWriter()
+		$nv : NormalValues()
+		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
+	then
+		modify($i) {
+			setHypokalemia(true);
+		}
+		$w.println("Tienes indicios de hipopotasemia en el ciclo numero " + $c);
+		System.out.println("Tienes indicios de hipopotasemia en el ciclo numero " + $c);
+end
+
+rule "Coronarian Ischemia"
+	when
+		$i : Issues(isqCor == false)
+		$w : PrintWriter()
+		$nv : NormalValues()
+		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
+	then
+		modify($i) {
+			setIsqCor(true);
+		}
+		$w.println("Tienes indicios de isquemia coronaria en el ciclo numero " + $c);
+		System.out.println("Tienes indicios de isquemia coronaria en el ciclo numero " + $c);
+end
+
+rule "Hypokalcemia"
+	when
+		$i : Issues(hypocalcemia == false)
+		$w : PrintWriter()
+		$nv : NormalValues()
+		$qt : QTIntervale(duration > $nv.maxQTDuration, $c : cycle)
+	then
+		modify($i) {
+			setHypocalcemia(true);
+		}
+		$w.println("Tienes indicios de hipocalcemia en el ciclo numero " + $c);
+		System.out.println("Tienes indicios de hipocalcemia en el ciclo numero " + $c);
+end
+
+rule "AMI"
+	when
+		$i : Issues(ami == false)
+		$w : PrintWriter()
+		$nv : NormalValues()
+		$t : T(peak > $nv.maxPeakWaveT, $c : cycle)
+	then
+		modify($i) {
+			setAmi(true);
+		}
+		$w.println("Tienes indicios de padecer un infarto de miocardio agudo en el ciclo numero " + $c);
+		System.out.println("Tienes indicios de padecer un infarto de miocardio agudo en el ciclo numero " + $c);
+end
+
+rule "Bradycardia"
+	when
+		$i : Issues(bradycar == false)
+		$w : PrintWriter()
+		$nv : NormalValues()
+		$bpm : BPM($b : bpm , $b < $nv.minBPM)
+	then
+		modify($i) {
+			setBradycar(true);
+		}
+		$w.println("Tienes indicios de bradicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
+		System.out.println("Tienes indicios de bradicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
+end
+
+rule "Tachycardia"
+	when
+		$i : Issues(tachycar == false)
+		$w : PrintWriter()
+		$nv : NormalValues()
+		$bpm : BPM($b: bpm, $b > $nv.maxBPM)
+	then
+		modify($i) {
+			setTachycar(true);
+		}
+		$w.println("Tienes indicios de taquicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
+		System.out.println("Tienes indicios de taquicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
+end
+
+rule "Premature Ventricular Contraction"
+	when
+		$i : Issues(ventricularContr == false)
+		$w : PrintWriter()
+		$nv : NormalValues()
+		$qrs : QRSComplex(duration < $nv.minQRSDuration, $c : cycle)
+	then
+		modify($i) {
+			setVentricularContr(true);
+		}
+		$w.println("Tienes indicios de padecer una contraccion prematura del ventriculo en el ciclo numero " + $c);
+		System.out.println("Tienes indicios de padecer una contraccion prematura del ventriculo en el ciclo numero " + $c);
+end
+
+rule "Atrial Flutter"
+	when
+		$i : Issues(atrialFlu == false)
+		$w : PrintWriter()
+		$t : T($c : cycle)
+		$p : P(cycle == $c+1, $t.end == $p.start)
+	then
+		modify($i) {
+			setAtrialFlu(true);
+		}
+		$w.println("Tienes inidicios de aleteo auricular ya que en el ciclo " + $c + 
+		" tu onda T acaba justo cuando empieza la onda P del siguiente ciclo (" + $p.getStart() + ")");
+		System.out.println("Tienes inidicios de aleteo auricular ya que en el ciclo " + $c + 
+		" tu onda T acaba justo cuando empieza la onda P del siguiente ciclo (" + $p.getStart() + ")");
+end

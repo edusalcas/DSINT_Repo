@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -54,6 +56,14 @@ public class Parser {
 
 			// Leemos todos los ciclos del ECG
 			line = reader.readLine();
+			
+			//Añadimos la clase que nos permite controlar que reglas estan activadas
+			kSession.insert(new Issues());
+			
+			//Creamos el fichero de salida
+			PrintWriter writer = new PrintWriter("files/output-file.txt", "UTF-8");
+			writer.println("Fichero de salida ECG: ");
+			kSession.insert(writer);
 			while (line != null) {
 				char letter = line.charAt(0);
 				if (letter == 'P')
@@ -91,6 +101,7 @@ public class Parser {
 			}
 			kSession.fireAllRules();
 			System.out.println("Ya se ha leido el fichero");
+			writer.close();
 			closeFile();
 		} catch (FileNotFoundException e) {
 			System.err.println(fileName + " no es un nombre no valido");

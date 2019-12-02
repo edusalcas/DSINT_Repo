@@ -1,8 +1,7 @@
 //created on: 4 nov. 2019
-package domain
+package rules
 
 import domain.*;
-
 
 rule "QRS Complex Creation"
 	when
@@ -33,69 +32,4 @@ rule "ST Segment Creation"
 		STSegment st = new STSegment($s.getStart(), $t.getEnd(), $c);
 		insert(st);
 		System.out.println("Se ha creado el segmento ST del ciclo numero " + $c);
-end
-
-rule "Hypokalemia"
-	when
-		$nv : NormalValues()
-		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
-	then
-		System.out.println("Tienes indicios de hipopotasemia en el ciclo numero " + $c);
-end
-
-rule "Coronarian Ischemia"
-	when
-		$nv : NormalValues()
-		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
-	then
-		System.out.println("Tienes indicios de isquemia coronaria en el ciclo numero " + $c);
-end
-
-rule "Hypokalcemia"
-	when
-		$nv : NormalValues()
-		$qt : QTIntervale(duration > $nv.maxQTDuration, $c : cycle)
-	then
-		System.out.println("Tienes indicios de hipocalcemia en el ciclo numero " + $c);
-end
-
-rule "AMI"
-	when
-		$nv : NormalValues()
-		$t : T(peak > $nv.maxPeakWaveT, $c : cycle)
-	then
-		System.out.println("Tienes indicios de padecer un infarto de miocardio agudo en el ciclo numero " + $c);
-end
-
-rule "Bradycardia"
-	when
-		$nv : NormalValues()
-		$bpm : BPM($b : bpm , $b < $nv.minBPM)
-	then
-		System.out.println("Tienes indicios de bradicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
-end
-
-rule "Tachycardia"
-	when
-		$nv : NormalValues()
-		$bpm : BPM($b: bpm, $b > $nv.maxBPM)
-	then
-		System.out.println("Tienes indicios de taquicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
-end
-
-rule "Premature Ventricular Contraction"
-	when
-		$nv : NormalValues()
-		$qrs : QRSComplex(duration < $nv.minQRSDuration, $c : cycle)
-	then
-		System.out.println("Tienes indicios de padecer una contraccion prematura del ventriculo en el ciclo numero " + $c);
-end
-
-rule "Atrial Flutter"
-	when
-		$t : T($c : cycle)
-		$p : P(cycle == $c+1, $t.end == $p.start)
-	then
-		System.out.printl("Tienes inidicios de aleteo auricular ya que en el ciclo " + $c + 
-		" tu onda T acaba justo cuando empieza la onda P del siguiente ciclo (" + $p.getStart() + ")");
 end
