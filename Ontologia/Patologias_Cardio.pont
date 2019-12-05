@@ -1,4 +1,4 @@
-; Thu Dec 05 15:53:19 CET 2019
+; Thu Dec 05 16:14:52 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -104,7 +104,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Se%C3%B1al
+(defclass Se%C3%B1al "Representación gráfica de la actividad eléctrica del corazon en función del tiempo, que se obtiene con un electrocardiógrafo en forma de cinta continua."
 	(is-a USER)
 	(role concrete)
 	(single-slot Fin
@@ -120,7 +120,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Intervalo
+(defclass Intervalo "Lista de complejos o intervalos que se manifiestan en un electrocardiograma."
 	(is-a Se%C3%B1al)
 	(role concrete)
 	(single-slot Duracion
@@ -128,19 +128,19 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Intervalo+QT
+(defclass Intervalo+QT "El intervalo QT corresponde a la despolarización y repolarización ventricular, se mide desde el principio del complejo QRS hasta el final de la onda T. Su duración varía según la frecuencia cardíaca y se han desarrollado varios factores de corrección para este intervalo."
 	(is-a Intervalo)
 	(role concrete))
 
-(defclass Complejo+QRS
+(defclass Complejo+QRS "El complejo QRS corresponde a la corriente eléctrica que causa la contracción de los ventrículos derecho e izquierdo (despolarización ventricular), la cual es mucho más potente que la de las aurículas y compete a más masa muscular, produciendo de este modo una mayor deflexión en el electrocardiograma."
 	(is-a Intervalo)
 	(role concrete))
 
-(defclass Segmento+ST
+(defclass Segmento+ST "El segmento ST conecta con el complejo QRS y la onda T. Puede estar descendido en la isquemia y elevado en el infarto de miocardio."
 	(is-a Intervalo)
 	(role concrete))
 
-(defclass Onda
+(defclass Onda "Señales eléctricas que forman el electrocardiograma y sus intervalos."
 	(is-a Se%C3%B1al)
 	(role concrete)
 	(single-slot Pico
@@ -148,31 +148,31 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass P
+(defclass P "La onda P es la señal eléctrica que corresponde a la despolarización auricular. Resulta de la superposición de la despolarización de la aurícula derecha (parte inicial de la onda P) y de la izquierda (final de la onda P)."
 	(is-a Onda)
 	(role concrete))
 
-(defclass Q
+(defclass Q "La onda Q, cuando está presente, representa la pequeña corriente horizontal (de izquierda a derecha) del potencial de acción viajando a través del septum interventricular. Las ondas Q que son demasiado anchas y profundas no tienen un origen septal, sino que indican un infarto de miocardio."
 	(is-a Onda)
 	(role concrete))
 
-(defclass T
+(defclass T "La onda T representa la repolarización de los ventrículos. Durante la formación del complejo QRS, generalmente también ocurre la repolarización auricular que no se registra en el ECG normal, ya que es tapado por el complejo QRS"
 	(is-a Onda)
 	(role concrete))
 
-(defclass R
+(defclass R "Es la primera deflexión positiva del complejo QRS y en la imagen clásica del ECG, es la de mayor tamaño."
 	(is-a Onda)
 	(role concrete))
 
-(defclass S
+(defclass S "Es cualquier onda negativa que siga a la onda R."
 	(is-a Onda)
 	(role concrete))
 
-(defclass Enfermedad
+(defclass Enfermedad "Alteración leve o grave del funcionamiento normal de un organismo o de alguna de sus partes debida a una causa interna o externa. (En nuestro caso, esta alteracion la provocará el corazón)"
 	(is-a USER)
 	(role concrete))
 
-(defclass Enfermedad+por+ciclos
+(defclass Enfermedad+por+ciclos "Enfermedad que se caracteriza por una alteración en las ondas del electrocardiograma."
 	(is-a Enfermedad)
 	(role concrete)
 	(single-slot Ciclo
@@ -180,35 +180,31 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Hipopotasemia
+(defclass Hipopotasemia "La hipopotasemia es la concentración sérica de potasio < 3,5 mEq/L causada por una deficiencia en los depósitos corporales totales de potasio o por una movilización anormal del potasio hacia el interior de las células. La causa más frecuente es la pérdida excesiva a través de los riñones o el tubo digestivo."
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Hipocalcemia
+(defclass Hipocalcemia "La hipocalcemia es la concentración sérica total de calcio < 8,8 mg/dL (< 2,2 mmol/L) en presencia de concentraciones plasmáticas normales de proteínas o de una concentración sérica de calcio ionizado < 4,7 mg/dL (< 1,17 mmol/L). Las causas abarcan hipoparatiroidismo, deficiencia de vitamina D y nefropatía."
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Infarto+Agudo+de+Miocardio+temprano
+(defclass Infarto+Agudo+de+Miocardio+temprano "IAM o IMA y conocido en el lenguaje coloquial como paro cardiaco, ataque cardiaco o infarto, refleja la muerte de células cardíacas provocada por la isquemia resultante del desequilibrio entre la demanda y el aporte  riego sanguíneo por la circulación coronaria."
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Isquemia+Coronaria
+(defclass Isquemia+Coronaria "La isquemia miocárdica ocurre cuando el flujo sanguíneo al corazón se reduce, lo que impide que el músculo cardíaco reciba suficiente oxígeno. La reducción del flujo sanguíneo generalmente se produce debido a una obstrucción parcial o total de las arterias del corazón (arterias coronarias)."
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Atrial+Flutter
+(defclass Atrial+Flutter "En cardiología, el aleteo auricular o, del inglés atrial flutter, es uno de los trastornos del ritmo cardíaco caracterizado por un ritmo cardíaco anormal que ocurre en la aurícula cardíaca. En sus inicios, el flutter auricular se asocia con una frecuencia cardíaca acelerada o taquicardia."
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Premature+Ventricular+Contraction
+(defclass Premature+Ventricular+Contraction "Una contracción ventricular prematura ( PVC ) es un evento relativamente común en el que el latido del corazón es iniciado por las fibras de Purkinje en los ventrículos en lugar de hacerlo por el nodo sinoauricular . Los PVC pueden no causar síntomas o pueden percibirse como un \"latido omitido\" o sentirse como palpitaciones en el pecho. El PVC de un solo golpe generalmente no representa un peligro."
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Estimating+the+Heart+Rate
-	(is-a Enfermedad+por+ciclos)
-	(role concrete))
-
-(defclass Enfermedad+por+ppm
+(defclass Enfermedad+por+ppm "Enfermedad que se caracteriza por una alteracion en las pulsaciones por minuto del paciente."
 	(is-a Enfermedad)
 	(role concrete)
 	(single-slot ppm
@@ -216,15 +212,15 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Bradicardia+Sinus
+(defclass Bradicardia+Sinus "Una bradicardia es un descenso de la frecuencia cardíaca normal. Normalmente, el corazón de un adulto late entre 60 y 100 veces por minuto en reposo. Si tienes bradicardia, el corazón late menos de 60 veces por minuto."
 	(is-a Enfermedad+por+ppm)
 	(role concrete))
 
-(defclass Tachycardia+Sinus
+(defclass Tachycardia+Sinus "La taquicardia es un tipo frecuente de trastornos del ritmo cardíaco (arritmia) en el que el corazón late más rápido de lo normal cuando está en reposo."
 	(is-a Enfermedad+por+ppm)
 	(role concrete))
 
-(defclass PPM
+(defclass PPM "La frecuencia cardíaca mide la cantidad de veces que el corazón late por minuto. Después de los 10 años, la frecuencia cardíaca de una persona debe estar entre 60 y 100 latidos por minuto mientras está en reposo."
 	(is-a USER)
 	(role concrete)
 	(single-slot ppm
@@ -232,7 +228,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Ciclos
+(defclass Ciclos "Serie de estados por los que pasa un electrocardiograma y que se suceden en el mismo orden hasta llegar a un estado a partir del cual vuelven a repetirse en el mismo orden."
 	(is-a USER)
 	(role concrete)
 	(multislot ciclos

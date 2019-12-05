@@ -1,4 +1,4 @@
-; Thu Dec 05 15:53:19 CET 2019
+; Thu Dec 05 16:14:52 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Patologias_Cardio_ProjectKB_Class75]
-		[Patologias_Cardio_ProjectKB_Class76]
-		[Patologias_Cardio_ProjectKB_Class77]))
+		[Patologias_Cardio_ProjectKB_Class10160]
+		[Patologias_Cardio_ProjectKB_Class10161]
+		[Patologias_Cardio_ProjectKB_Class10162]))
 
 ([CLSES_TAB] of  Widget
 
@@ -66,6 +66,9 @@
 	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
+([KB_205201_Class3] of  Map
+)
+
 ([KB_464704_Class0] of  String
 
 	(name "factory_class_name")
@@ -74,9 +77,9 @@
 ([KB_464704_Class1] of  Map
 
 	(entries
-		[Patologias_Cardio_ProjectKB_Class78]
-		[Patologias_Cardio_ProjectKB_Class79]
-		[Patologias_Cardio_ProjectKB_Class80]))
+		[Patologias_Cardio_ProjectKB_Class10163]
+		[Patologias_Cardio_ProjectKB_Class10164]
+		[Patologias_Cardio_ProjectKB_Class10165]))
 
 ([KB_464704_Class100] of  String
 
@@ -170,9 +173,6 @@
 	(name "classes_file_name")
 	(string_value "Patologias_Cardio.pont"))
 
-([KB_602957_Class0] of  Map
-)
-
 ([LAYOUT_PROPERTIES] of  Property_List
 
 	(name "layout properties")
@@ -264,6 +264,42 @@
 ([Patologias_Cardio_ProjectKB_Class101] of  String
 
 	(name "SearchTab_Query"))
+
+([Patologias_Cardio_ProjectKB_Class10160] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([Patologias_Cardio_ProjectKB_Class10161] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([Patologias_Cardio_ProjectKB_Class10162] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([Patologias_Cardio_ProjectKB_Class10163] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([Patologias_Cardio_ProjectKB_Class10164] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([Patologias_Cardio_ProjectKB_Class10165] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([Patologias_Cardio_ProjectKB_Class11] of  Widget
 
@@ -580,44 +616,8 @@
 ([Patologias_Cardio_ProjectKB_Class74] of  Property_List
 )
 
-([Patologias_Cardio_ProjectKB_Class75] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([Patologias_Cardio_ProjectKB_Class76] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([Patologias_Cardio_ProjectKB_Class77] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([Patologias_Cardio_ProjectKB_Class78] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([Patologias_Cardio_ProjectKB_Class79] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
 ([Patologias_Cardio_ProjectKB_Class8] of  Property_List
 )
-
-([Patologias_Cardio_ProjectKB_Class80] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([Patologias_Cardio_ProjectKB_Class9] of  Widget
 
