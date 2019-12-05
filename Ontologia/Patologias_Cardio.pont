@@ -1,4 +1,4 @@
-; Thu Dec 05 16:14:52 CET 2019
+; Thu Dec 05 16:27:12 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -104,7 +104,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Se%C3%B1al "Representación gráfica de la actividad eléctrica del corazon en función del tiempo, que se obtiene con un electrocardiógrafo en forma de cinta continua."
+(defclass Se%C3%B1al "Representación gráfica de la actividad eléctrica del corazon en función del tiempo, que se obtiene con un electrocardiógrafo en forma de cinta continua.\n\nURL (todas las documentaciones de las subclases tambien han sido extraídas de aquí): https://es.wikipedia.org/wiki/Electrocardiograma\n\nURL: https://es.wikipedia.org/wiki/Electrocardiograma"
 	(is-a USER)
 	(role concrete)
 	(single-slot Fin
@@ -168,7 +168,7 @@
 	(is-a Onda)
 	(role concrete))
 
-(defclass Enfermedad "Alteración leve o grave del funcionamiento normal de un organismo o de alguna de sus partes debida a una causa interna o externa. (En nuestro caso, esta alteracion la provocará el corazón)"
+(defclass Enfermedad "Alteración leve o grave del funcionamiento normal de un organismo o de alguna de sus partes debida a una causa interna o externa. (En nuestro caso, esta alteracion la provocará el corazón)\n\nURL: diccionarioDeGoogle"
 	(is-a USER)
 	(role concrete))
 
@@ -180,27 +180,27 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Hipopotasemia "La hipopotasemia es la concentración sérica de potasio < 3,5 mEq/L causada por una deficiencia en los depósitos corporales totales de potasio o por una movilización anormal del potasio hacia el interior de las células. La causa más frecuente es la pérdida excesiva a través de los riñones o el tubo digestivo."
+(defclass Hipopotasemia "La hipopotasemia es la concentración sérica de potasio < 3,5 mEq/L causada por una deficiencia en los depósitos corporales totales de potasio o por una movilización anormal del potasio hacia el interior de las células. La causa más frecuente es la pérdida excesiva a través de los riñones o el tubo digestivo.\n\nURL: https://www.msdmanuals.com/es-es/professional/trastornos-endocrinológicos-y-metabólicos/trastornos-electrol%C3%ADticos/hipopotasemia"
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Hipocalcemia "La hipocalcemia es la concentración sérica total de calcio < 8,8 mg/dL (< 2,2 mmol/L) en presencia de concentraciones plasmáticas normales de proteínas o de una concentración sérica de calcio ionizado < 4,7 mg/dL (< 1,17 mmol/L). Las causas abarcan hipoparatiroidismo, deficiencia de vitamina D y nefropatía."
+(defclass Hipocalcemia "La hipocalcemia es la concentración sérica total de calcio < 8,8 mg/dL (< 2,2 mmol/L) en presencia de concentraciones plasmáticas normales de proteínas o de una concentración sérica de calcio ionizado < 4,7 mg/dL (< 1,17 mmol/L). Las causas abarcan hipoparatiroidismo, deficiencia de vitamina D y nefropatía.\n\nURL: https://www.msdmanuals.com/es/professional/trastornos-endocrinológicos-y-metabólicos/trastornos-electrol%C3%ADticos/hipocalcemia"
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Infarto+Agudo+de+Miocardio+temprano "IAM o IMA y conocido en el lenguaje coloquial como paro cardiaco, ataque cardiaco o infarto, refleja la muerte de células cardíacas provocada por la isquemia resultante del desequilibrio entre la demanda y el aporte  riego sanguíneo por la circulación coronaria."
+(defclass Infarto+Agudo+de+Miocardio+temprano "IAM o IMA y conocido en el lenguaje coloquial como paro cardiaco, ataque cardiaco o infarto, refleja la muerte de células cardíacas provocada por la isquemia resultante del desequilibrio entre la demanda y el aporte  riego sanguíneo por la circulación coronaria.\n\nURL: https://es.wikipedia.org/wiki/Infarto_agudo_de_miocardio"
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Isquemia+Coronaria "La isquemia miocárdica ocurre cuando el flujo sanguíneo al corazón se reduce, lo que impide que el músculo cardíaco reciba suficiente oxígeno. La reducción del flujo sanguíneo generalmente se produce debido a una obstrucción parcial o total de las arterias del corazón (arterias coronarias)."
+(defclass Isquemia+Coronaria "La isquemia miocárdica ocurre cuando el flujo sanguíneo al corazón se reduce, lo que impide que el músculo cardíaco reciba suficiente oxígeno. La reducción del flujo sanguíneo generalmente se produce debido a una obstrucción parcial o total de las arterias del corazón (arterias coronarias).\n\nURL: https://www.mayoclinic.org/es-es/diseases-conditions/myocardial-ischemia/symptoms-causes/syc-20375417"
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Atrial+Flutter "En cardiología, el aleteo auricular o, del inglés atrial flutter, es uno de los trastornos del ritmo cardíaco caracterizado por un ritmo cardíaco anormal que ocurre en la aurícula cardíaca. En sus inicios, el flutter auricular se asocia con una frecuencia cardíaca acelerada o taquicardia."
+(defclass Atrial+Flutter "En cardiología, el aleteo auricular o, del inglés atrial flutter, es uno de los trastornos del ritmo cardíaco caracterizado por un ritmo cardíaco anormal que ocurre en la aurícula cardíaca. En sus inicios, el flutter auricular se asocia con una frecuencia cardíaca acelerada o taquicardia.\n\nURL: https://es.wikipedia.org/wiki/Aleteo_auricular"
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Premature+Ventricular+Contraction "Una contracción ventricular prematura ( PVC ) es un evento relativamente común en el que el latido del corazón es iniciado por las fibras de Purkinje en los ventrículos en lugar de hacerlo por el nodo sinoauricular . Los PVC pueden no causar síntomas o pueden percibirse como un \"latido omitido\" o sentirse como palpitaciones en el pecho. El PVC de un solo golpe generalmente no representa un peligro."
+(defclass Premature+Ventricular+Contraction "Una contracción ventricular prematura ( PVC ) es un evento relativamente común en el que el latido del corazón es iniciado por las fibras de Purkinje en los ventrículos en lugar de hacerlo por el nodo sinoauricular . Los PVC pueden no causar síntomas o pueden percibirse como un \"latido omitido\" o sentirse como palpitaciones en el pecho. El PVC de un solo golpe generalmente no representa un peligro.\n\nURL: https://en.wikipedia.org/wiki/Premature_ventricular_contraction"
 	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
@@ -212,15 +212,15 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Bradicardia+Sinus "Una bradicardia es un descenso de la frecuencia cardíaca normal. Normalmente, el corazón de un adulto late entre 60 y 100 veces por minuto en reposo. Si tienes bradicardia, el corazón late menos de 60 veces por minuto."
+(defclass Bradicardia+Sinus "Una bradicardia es un descenso de la frecuencia cardíaca normal. Normalmente, el corazón de un adulto late entre 60 y 100 veces por minuto en reposo. Si tienes bradicardia, el corazón late menos de 60 veces por minuto.\n\nURL: https://www.mayoclinic.org/es-es/diseases-conditions/bradycardia/symptoms-causes/syc-20355474"
 	(is-a Enfermedad+por+ppm)
 	(role concrete))
 
-(defclass Tachycardia+Sinus "La taquicardia es un tipo frecuente de trastornos del ritmo cardíaco (arritmia) en el que el corazón late más rápido de lo normal cuando está en reposo."
+(defclass Tachycardia+Sinus "La taquicardia es un tipo frecuente de trastornos del ritmo cardíaco (arritmia) en el que el corazón late más rápido de lo normal cuando está en reposo.\n\nURL: https://www.mayoclinic.org/es-es/diseases-conditions/tachycardia/symptoms-causes/syc-20355127"
 	(is-a Enfermedad+por+ppm)
 	(role concrete))
 
-(defclass PPM "La frecuencia cardíaca mide la cantidad de veces que el corazón late por minuto. Después de los 10 años, la frecuencia cardíaca de una persona debe estar entre 60 y 100 latidos por minuto mientras está en reposo."
+(defclass PPM "La frecuencia cardíaca mide la cantidad de veces que el corazón late por minuto. Después de los 10 años, la frecuencia cardíaca de una persona debe estar entre 60 y 100 latidos por minuto mientras está en reposo.\n\nURL: https://www.medicalnewstoday.com/articles/291182.php"
 	(is-a USER)
 	(role concrete)
 	(single-slot ppm
@@ -228,7 +228,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
-(defclass Ciclos "Serie de estados por los que pasa un electrocardiograma y que se suceden en el mismo orden hasta llegar a un estado a partir del cual vuelven a repetirse en el mismo orden."
+(defclass Ciclos "Serie de estados por los que pasa un electrocardiograma y que se suceden en el mismo orden hasta llegar a un estado a partir del cual vuelven a repetirse en el mismo orden.\n\nURL : diccionarioDeGoogle"
 	(is-a USER)
 	(role concrete)
 	(multislot ciclos
