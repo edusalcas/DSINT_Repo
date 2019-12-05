@@ -1,4 +1,4 @@
-; Thu Dec 05 15:41:12 CET 2019
+; Thu Dec 05 15:53:19 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -20,12 +20,13 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[Patologias_Cardio_ProjectKB_Class78]
-		[Patologias_Cardio_ProjectKB_Class79]
-		[Patologias_Cardio_ProjectKB_Class80]))
+		[Patologias_Cardio_ProjectKB_Class75]
+		[Patologias_Cardio_ProjectKB_Class76]
+		[Patologias_Cardio_ProjectKB_Class77]))
 
 ([CLSES_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.ClsesTab"))
 
 ([CREATION_TIMESTAMP_WIDGET] of  Widget
@@ -38,6 +39,7 @@
 
 ([FORMS_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.FormsTab"))
 
 ([INSTANCE_ANNOTATION_FORM_WIDGET] of  Widget
@@ -61,6 +63,7 @@
 
 ([INSTANCES_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
 ([KB_464704_Class0] of  String
@@ -69,7 +72,11 @@
 	(string_value "edu.stanford.smi.protege.storage.clips.ClipsKnowledgeBaseFactory"))
 
 ([KB_464704_Class1] of  Map
-)
+
+	(entries
+		[Patologias_Cardio_ProjectKB_Class78]
+		[Patologias_Cardio_ProjectKB_Class79]
+		[Patologias_Cardio_ProjectKB_Class80]))
 
 ([KB_464704_Class100] of  String
 
@@ -163,7 +170,7 @@
 	(name "classes_file_name")
 	(string_value "Patologias_Cardio.pont"))
 
-([KB_552853_Class0] of  Map
+([KB_602957_Class0] of  Map
 )
 
 ([LAYOUT_PROPERTIES] of  Property_List
@@ -178,6 +185,7 @@
 	(display_hidden_classes TRUE)
 	(display_multi_parent_class_icon TRUE)
 	(is_readonly FALSE)
+	(tabbed_instance_form_layout FALSE)
 	(undo_enabled TRUE)
 	(update_modification_slots FALSE))
 
@@ -406,7 +414,7 @@
 
 ([Patologias_Cardio_ProjectKB_Class41] of  Widget
 
-	(is_hidden TRUE)
+	(is_hidden FALSE)
 	(property_list [Patologias_Cardio_ProjectKB_Class42])
 	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
 
@@ -572,23 +580,44 @@
 ([Patologias_Cardio_ProjectKB_Class74] of  Property_List
 )
 
-([Patologias_Cardio_ProjectKB_Class78] of  String
+([Patologias_Cardio_ProjectKB_Class75] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([Patologias_Cardio_ProjectKB_Class79] of  String
+([Patologias_Cardio_ProjectKB_Class76] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([Patologias_Cardio_ProjectKB_Class8] of  Property_List
-)
-
-([Patologias_Cardio_ProjectKB_Class80] of  String
+([Patologias_Cardio_ProjectKB_Class77] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
+
+([Patologias_Cardio_ProjectKB_Class78] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([Patologias_Cardio_ProjectKB_Class79] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([Patologias_Cardio_ProjectKB_Class8] of  Property_List
+)
+
+([Patologias_Cardio_ProjectKB_Class80] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([Patologias_Cardio_ProjectKB_Class9] of  Widget
 
@@ -609,6 +638,7 @@
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protege.widget.FormWidget")
 	(default_slot_metaclass ":STANDARD-SLOT")
+	(journaling_enabled FALSE)
 	(next_frame_number 0)
 	(options [option_instance])
 	(property_map [KB_464704_Class1])
@@ -618,15 +648,54 @@
 		[SLOTS_TAB]
 		[FORMS_TAB]
 		[INSTANCES_TAB]
-		[QUERIES_TAB]))
+		[QUERIES_TAB]
+		[Patologias_Cardio_ProjectKB_Class57]
+		[Patologias_Cardio_ProjectKB_Class39]
+		[Patologias_Cardio_ProjectKB_Class17]
+		[Patologias_Cardio_ProjectKB_Class71]
+		[Patologias_Cardio_ProjectKB_Class35]
+		[Patologias_Cardio_ProjectKB_Class67]
+		[Patologias_Cardio_ProjectKB_Class49]
+		[Patologias_Cardio_ProjectKB_Class41]
+		[Patologias_Cardio_ProjectKB_Class55]
+		[Patologias_Cardio_ProjectKB_Class19]
+		[Patologias_Cardio_ProjectKB_Class21]
+		[Patologias_Cardio_ProjectKB_Class15]
+		[Patologias_Cardio_ProjectKB_Class51]
+		[Patologias_Cardio_ProjectKB_Class9]
+		[Patologias_Cardio_ProjectKB_Class47]
+		[Patologias_Cardio_ProjectKB_Class1]
+		[Patologias_Cardio_ProjectKB_Class27]
+		[Patologias_Cardio_ProjectKB_Class25]
+		[Patologias_Cardio_ProjectKB_Class5]
+		[Patologias_Cardio_ProjectKB_Class63]
+		[Patologias_Cardio_ProjectKB_Class23]
+		[Patologias_Cardio_ProjectKB_Class43]
+		[Patologias_Cardio_ProjectKB_Class69]
+		[Patologias_Cardio_ProjectKB_Class37]
+		[Patologias_Cardio_ProjectKB_Class53]
+		[Patologias_Cardio_ProjectKB_Class61]
+		[Patologias_Cardio_ProjectKB_Class65]
+		[Patologias_Cardio_ProjectKB_Class73]
+		[Patologias_Cardio_ProjectKB_Class3]
+		[Patologias_Cardio_ProjectKB_Class11]
+		[Patologias_Cardio_ProjectKB_Class33]
+		[Patologias_Cardio_ProjectKB_Class29]
+		[Patologias_Cardio_ProjectKB_Class45]
+		[Patologias_Cardio_ProjectKB_Class59]
+		[Patologias_Cardio_ProjectKB_Class7]
+		[Patologias_Cardio_ProjectKB_Class31]
+		[Patologias_Cardio_ProjectKB_Class13]))
 
 ([QUERIES_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(property_list [KB_464704_Class98])
 	(widget_class_name "edu.stanford.smi.protegex.queries_tab.QueriesTab"))
 
 ([SLOTS_TAB] of  Widget
 
+	(is_hidden FALSE)
 	(widget_class_name "edu.stanford.smi.protege.widget.SlotsTab"))
 
 ([SOURCES] of  Property_List
