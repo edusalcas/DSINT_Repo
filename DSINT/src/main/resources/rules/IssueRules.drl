@@ -7,114 +7,72 @@ import java.io.PrintWriter;
 
 rule "Hypokalemia"
 	when
-		$i : Issues(hypokalemia == false)
-		$w : PrintWriter()
+		not (exists (Hypokalemia()))
 		$nv : NormalValues()
 		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
 	then
-		modify($i) {
-			setHypokalemia(true);
-		}
-		$w.println("Tienes indicios de hipopotasemia en el ciclo numero " + $c);
-		System.out.println("Tienes indicios de hipopotasemia en el ciclo numero " + $c);
+		insert(new Hypokalemia("Tienes indicios de hipopotasemia en el ciclo numero ", $c));
 end
 
 rule "Coronarian Ischemia"
 	when
-		$i : Issues(isqCor == false)
-		$w : PrintWriter()
+		not (exists (CoronarianIsq()))
 		$nv : NormalValues()
 		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
 	then
-		modify($i) {
-			setIsqCor(true);
-		}
-		$w.println("Tienes indicios de isquemia coronaria en el ciclo numero " + $c);
-		System.out.println("Tienes indicios de isquemia coronaria en el ciclo numero " + $c);
+		insert(new CoronarianIsq("Tienes indicios de isquemia coronaria en el ciclo numero ", $c));
 end
 
 rule "Hypokalcemia"
 	when
-		$i : Issues(hypocalcemia == false)
-		$w : PrintWriter()
+		not (exists (Hypokalcemia()))
 		$nv : NormalValues()
 		$qt : QTIntervale(duration > $nv.maxQTDuration, $c : cycle)
 	then
-		modify($i) {
-			setHypocalcemia(true);
-		}
-		$w.println("Tienes indicios de hipocalcemia en el ciclo numero " + $c);
-		System.out.println("Tienes indicios de hipocalcemia en el ciclo numero " + $c);
+		insert(new Hypokalcemia("Tienes indicios de hipocalcemia en el ciclo numero ", $c));
 end
 
 rule "AMI"
 	when
-		$i : Issues(ami == false)
-		$w : PrintWriter()
+		not (exists (AMI()))
 		$nv : NormalValues()
 		$t : T(peak > $nv.maxPeakWaveT, $c : cycle)
 	then
-		modify($i) {
-			setAmi(true);
-		}
-		$w.println("Tienes indicios de padecer un infarto de miocardio agudo en el ciclo numero " + $c);
-		System.out.println("Tienes indicios de padecer un infarto de miocardio agudo en el ciclo numero " + $c);
+		insert(new AMI("Tienes indicios de paceder un infarto de miocardio agudo en el ciclo numero ", $c));
 end
 
 rule "Bradycardia"
 	when
-		$i : Issues(bradycar == false)
-		$w : PrintWriter()
+		not (exists (Bradycardia()))
 		$nv : NormalValues()
 		$bpm : BPM($b : bpm , $b < $nv.minBPM)
 	then
-		modify($i) {
-			setBradycar(true);
-		}
-		$w.println("Tienes indicios de bradicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
-		System.out.println("Tienes indicios de bradicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
+		insert(new Bradycardia("Tienes indicios de bradicardia, ya que la media de tus pulsaciones por minuto es de  ", $b));
 end
 
 rule "Tachycardia"
 	when
-		$i : Issues(tachycar == false)
-		$w : PrintWriter()
+		not (exists (Tachycardia()))
 		$nv : NormalValues()
 		$bpm : BPM($b: bpm, $b > $nv.maxBPM)
 	then
-		modify($i) {
-			setTachycar(true);
-		}
-		$w.println("Tienes indicios de taquicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
-		System.out.println("Tienes indicios de taquicardia dada la media de tus pulsaciones por minuto (" + $b + ")");
+		insert(new Tachycardia("Tienes indicios de taquicardia, ya que la media de tus pulsaciones por minuto es de  ", $b));
 end
 
 rule "Premature Ventricular Contraction"
 	when
-		$i : Issues(ventricularContr == false)
-		$w : PrintWriter()
+		not (exists (PVC()))
 		$nv : NormalValues()
 		$qrs : QRSComplex(duration < $nv.minQRSDuration, $c : cycle)
 	then
-		modify($i) {
-			setVentricularContr(true);
-		}
-		$w.println("Tienes indicios de padecer una contraccion prematura del ventriculo en el ciclo numero " + $c);
-		System.out.println("Tienes indicios de padecer una contraccion prematura del ventriculo en el ciclo numero " + $c);
+		insert(new PVC("Tienes indicios de una contraccion prematura del ventriculo en el ciclo numero ", $c));
 end
 
 rule "Atrial Flutter"
 	when
-		$i : Issues(atrialFlu == false)
-		$w : PrintWriter()
+		not (exists (AtrialFl()))
 		$t : T($c : cycle)
 		$p : P(cycle == $c+1, $t.end == $p.start)
 	then
-		modify($i) {
-			setAtrialFlu(true);
-		}
-		$w.println("Tienes inidicios de aleteo auricular ya que en el ciclo " + $c + 
-		" tu onda T acaba justo cuando empieza la onda P del siguiente ciclo (" + $p.getStart() + ")");
-		System.out.println("Tienes inidicios de aleteo auricular ya que en el ciclo " + $c + 
-		" tu onda T acaba justo cuando empieza la onda P del siguiente ciclo (" + $p.getStart() + ")");
+		insert(new AtrialFl("Tienes indicios de un aleteo auricular en el ciclo numero ", $c));
 end

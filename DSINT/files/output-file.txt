@@ -1,4 +1,3 @@
 Fichero de salida ECG: 
-Tienes indicios de hipopotasemia en el ciclo numero 1
-Tienes indicios de isquemia coronaria en el ciclo numero 1
-Tienes indicios de padecer una contraccion prematura del ventriculo en el ciclo numero 19
+Tienes indicios de una contraccion prematura del ventriculo en el ciclo numero (16)
+Tienes indicios de hipocalcemia en el ciclo numero (3)
