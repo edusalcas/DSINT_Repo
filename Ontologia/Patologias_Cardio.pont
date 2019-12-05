@@ -1,4 +1,4 @@
-; Thu Oct 31 17:27:59 CET 2019
+; Thu Dec 05 15:41:12 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -27,9 +27,13 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
+	(single-slot Duracion
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
 	(single-slot Patologias_Cardio_Class1
 		(type SYMBOL)
-;+		(allowed-parents Ondas)
+;+		(allowed-parents Onda)
 ;+		(cardinality 5 1)
 		(create-accessor read-write))
 	(single-slot Onda_T
@@ -67,11 +71,19 @@
 		(create-accessor read-write))
 	(multislot _Ondas
 		(type SYMBOL)
-;+		(allowed-parents Ondas)
+;+		(allowed-parents Onda)
 		(cardinality 5 5)
 		(create-accessor read-write))
 	(single-slot ondas
 		(type SYMBOL)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Principio%C2%BA
+		(type STRING)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot Ciclo
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot Patologias_Cardio_Class10018
@@ -80,36 +92,27 @@
 		(create-accessor read-write))
 	(multislot ciclos
 		(type SYMBOL)
-;+		(allowed-parents Ciclo)
+;+		(allowed-parents)
 		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write))
 	(single-slot Inicio
 		(type INTEGER)
 ;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass Electrocardiograma
-	(is-a USER)
-	(role concrete)
-	(single-slot ppm
+		(create-accessor read-write))
+	(single-slot Patologias_Cardio_Class20008
 		(type INTEGER)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(multislot ciclos
-		(type SYMBOL)
-;+		(allowed-parents Ciclo)
-		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
 
-(defclass Ondas
+(defclass Se%C3%B1al
 	(is-a USER)
 	(role concrete)
 	(single-slot Fin
 		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(single-slot Pico
-		(type FLOAT)
+	(single-slot Ciclo
+		(type INTEGER)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot Inicio
@@ -117,107 +120,123 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write)))
 
+(defclass Intervalo
+	(is-a Se%C3%B1al)
+	(role concrete)
+	(single-slot Duracion
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Intervalo+QT
+	(is-a Intervalo)
+	(role concrete))
+
+(defclass Complejo+QRS
+	(is-a Intervalo)
+	(role concrete))
+
+(defclass Segmento+ST
+	(is-a Intervalo)
+	(role concrete))
+
+(defclass Onda
+	(is-a Se%C3%B1al)
+	(role concrete)
+	(single-slot Pico
+		(type FLOAT)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
 (defclass P
-	(is-a Ondas)
+	(is-a Onda)
 	(role concrete))
 
 (defclass Q
-	(is-a Ondas)
+	(is-a Onda)
 	(role concrete))
 
 (defclass T
-	(is-a Ondas)
+	(is-a Onda)
 	(role concrete))
 
 (defclass R
-	(is-a Ondas)
+	(is-a Onda)
 	(role concrete))
 
 (defclass S
-	(is-a Ondas)
+	(is-a Onda)
 	(role concrete))
 
-(defclass Intervalos
+(defclass Enfermedad
 	(is-a USER)
 	(role concrete))
 
-(defclass Intervalo+QT
-	(is-a Intervalos)
-	(role concrete))
-
-(defclass Patolog%C3%ADa
-	(is-a USER)
-	(role concrete))
-
-(defclass Patrones+simples
-	(is-a Patolog%C3%ADa)
-	(role concrete))
+(defclass Enfermedad+por+ciclos
+	(is-a Enfermedad)
+	(role concrete)
+	(single-slot Ciclo
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
 
 (defclass Hipopotasemia
-	(is-a Patrones+simples)
+	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
 (defclass Hipocalcemia
-	(is-a Patrones+simples)
+	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
 (defclass Infarto+Agudo+de+Miocardio+temprano
-	(is-a Patrones+simples)
+	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
 (defclass Isquemia+Coronaria
-	(is-a Patrones+simples)
-	(role concrete))
-
-(defclass Patrones+complejos
-	(is-a Patolog%C3%ADa)
-	(role concrete))
-
-(defclass Bradicardia+Sinus
-	(is-a Patrones+complejos)
-	(role concrete))
-
-(defclass Tachycardia+Sinus
-	(is-a Patrones+complejos)
+	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
 (defclass Atrial+Flutter
-	(is-a Patrones+complejos)
+	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
 (defclass Premature+Ventricular+Contraction
-	(is-a Patrones+complejos)
+	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
 (defclass Estimating+the+Heart+Rate
-	(is-a Patrones+complejos)
+	(is-a Enfermedad+por+ciclos)
 	(role concrete))
 
-(defclass Ciclo
+(defclass Enfermedad+por+ppm
+	(is-a Enfermedad)
+	(role concrete)
+	(single-slot ppm
+		(type INTEGER)
+;+		(cardinality 0 1)
+		(create-accessor read-write)))
+
+(defclass Bradicardia+Sinus
+	(is-a Enfermedad+por+ppm)
+	(role concrete))
+
+(defclass Tachycardia+Sinus
+	(is-a Enfermedad+por+ppm)
+	(role concrete))
+
+(defclass PPM
 	(is-a USER)
 	(role concrete)
-	(single-slot Onda_T
-		(type SYMBOL)
-;+		(allowed-parents T)
+	(single-slot ppm
+		(type INTEGER)
 ;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Onda_S
+		(create-accessor read-write)))
+
+(defclass Ciclos
+	(is-a USER)
+	(role concrete)
+	(multislot ciclos
 		(type SYMBOL)
-;+		(allowed-parents S)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Onda_R
-		(type SYMBOL)
-;+		(allowed-parents R)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Onda_Q
-		(type SYMBOL)
-;+		(allowed-parents Q)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Onda_P
-		(type SYMBOL)
-;+		(allowed-parents P)
-;+		(cardinality 0 1)
+;+		(allowed-parents)
+		(cardinality 1 ?VARIABLE)
 		(create-accessor read-write)))
