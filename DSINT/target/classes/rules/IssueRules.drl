@@ -1,0 +1,78 @@
+//created on: 2 dic. 2019
+package rules
+
+import domain.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+rule "Hypokalemia"
+	when
+		not (exists (Hypokalemia()))
+		$nv : NormalValues()
+		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
+	then
+		insert(new Hypokalemia("Tienes indicios de hipopotasemia en el ciclo numero ", $c));
+end
+
+rule "Coronarian Ischemia"
+	when
+		not (exists (CoronarianIsq()))
+		$nv : NormalValues()
+		$t: T(peak < $nv.minPeakWaveT, $c : cycle)
+	then
+		insert(new CoronarianIsq("Tienes indicios de isquemia coronaria en el ciclo numero ", $c));
+end
+
+rule "Hypokalcemia"
+	when
+		not (exists (Hypokalcemia()))
+		$nv : NormalValues()
+		$qt : QTIntervale(duration > $nv.maxQTDuration, $c : cycle)
+	then
+		insert(new Hypokalcemia("Tienes indicios de hipocalcemia en el ciclo numero ", $c));
+end
+
+rule "AMI"
+	when
+		not (exists (AMI()))
+		$nv : NormalValues()
+		$t : T(peak > $nv.maxPeakWaveT, $c : cycle)
+	then
+		insert(new AMI("Tienes indicios de paceder un infarto de miocardio agudo en el ciclo numero ", $c));
+end
+
+rule "Bradycardia"
+	when
+		not (exists (Bradycardia()))
+		$nv : NormalValues()
+		$bpm : BPM($b : bpm , $b < $nv.minBPM)
+	then
+		insert(new Bradycardia("Tienes indicios de bradicardia, ya que la media de tus pulsaciones por minuto es de  ", $b));
+end
+
+rule "Tachycardia"
+	when
+		not (exists (Tachycardia()))
+		$nv : NormalValues()
+		$bpm : BPM($b: bpm, $b > $nv.maxBPM)
+	then
+		insert(new Tachycardia("Tienes indicios de taquicardia, ya que la media de tus pulsaciones por minuto es de  ", $b));
+end
+
+rule "Premature Ventricular Contraction"
+	when
+		not (exists (PVC()))
+		$nv : NormalValues()
+		$qrs : QRSComplex(duration < $nv.minQRSDuration, $c : cycle)
+	then
+		insert(new PVC("Tienes indicios de una contraccion prematura del ventriculo en el ciclo numero ", $c));
+end
+
+rule "Atrial Flutter"
+	when
+		not (exists (AtrialFl()))
+		$t : T($c : cycle)
+		$p : P(cycle == $c+1, $t.end == $p.start)
+	then
+		insert(new AtrialFl("Tienes indicios de un aleteo auricular en el ciclo numero ", $c));
+end

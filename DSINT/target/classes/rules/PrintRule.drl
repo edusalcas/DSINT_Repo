@@ -1,0 +1,15 @@
+//created on: 3 dic. 2019
+package rules
+
+import domain.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+rule "Print Issue"
+    when
+        $w : PrintWriter()
+        $i : Issue()
+    then
+        $w.println($i.getMessage());
+		System.out.println($i.getMessage());
+end

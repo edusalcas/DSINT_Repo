@@ -1,7 +1,7 @@
 package domain;
 
 public class CycleIssue extends Issue {
-	
+
 	private int cycle;
 
 	public CycleIssue(String message, int cycle) {
@@ -20,6 +20,6 @@ public class CycleIssue extends Issue {
 	@Override
 	protected String data() {
 		return "(" + cycle + ")";
-	}	
+	}
 
 }
