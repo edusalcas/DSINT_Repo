@@ -7,7 +7,7 @@ public class NormalValues {
 	private final float maxPeakWaveT = 0.55f;
 	private final float minPeakWaveT = 0.1f;
 	private final int maxQTDuration = 420;
-	private final int minQRSDuration = 100;
+	private final int minQRSDuration = 80;
 	
 	public int getMaxBPM() {
 		return maxBPM;

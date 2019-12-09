@@ -1,3 +1,2 @@
 Fichero de salida ECG: 
-Tienes indicios de una contraccion prematura del ventriculo en el ciclo numero (16)
-Tienes indicios de hipocalcemia en el ciclo numero (3)
+Tienes indicios de bradicardia, ya que la media de tus pulsaciones por minuto es de (44)

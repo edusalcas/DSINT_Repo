@@ -47,7 +47,7 @@ rule "Bradycardia"
 		$nv : NormalValues()
 		$bpm : BPM($b : bpm , $b < $nv.minBPM)
 	then
-		insert(new Bradycardia("Tienes indicios de bradicardia, ya que la media de tus pulsaciones por minuto es de  ", $b));
+		insert(new Bradycardia("Tienes indicios de bradicardia, ya que la media de tus pulsaciones por minuto es de ", $b));
 end
 
 rule "Tachycardia"
@@ -56,7 +56,7 @@ rule "Tachycardia"
 		$nv : NormalValues()
 		$bpm : BPM($b: bpm, $b > $nv.maxBPM)
 	then
-		insert(new Tachycardia("Tienes indicios de taquicardia, ya que la media de tus pulsaciones por minuto es de  ", $b));
+		insert(new Tachycardia("Tienes indicios de taquicardia, ya que la media de tus pulsaciones por minuto es de ", $b));
 end
 
 rule "Premature Ventricular Contraction"
