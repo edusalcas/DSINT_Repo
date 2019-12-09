@@ -1,4 +1,4 @@
-; Thu Dec 05 16:27:12 CET 2019
+; Mon Dec 09 12:35:47 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
@@ -90,10 +90,9 @@
 		(type STRING)
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
-	(multislot ciclos
-		(type SYMBOL)
-;+		(allowed-parents)
-		(cardinality 1 ?VARIABLE)
+	(single-slot ciclos
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot Inicio
 		(type INTEGER)
@@ -231,8 +230,7 @@
 (defclass Ciclos "Serie de estados por los que pasa un electrocardiograma y que se suceden en el mismo orden hasta llegar a un estado a partir del cual vuelven a repetirse en el mismo orden.\n\nURL : diccionarioDeGoogle"
 	(is-a USER)
 	(role concrete)
-	(multislot ciclos
-		(type SYMBOL)
-;+		(allowed-parents)
-		(cardinality 1 ?VARIABLE)
+	(single-slot ciclos
+		(type INTEGER)
+;+		(cardinality 0 1)
 		(create-accessor read-write)))

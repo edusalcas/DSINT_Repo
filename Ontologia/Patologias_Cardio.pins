@@ -1,4 +1,100 @@
-; Thu Dec 05 16:27:12 CET 2019
+; Mon Dec 09 12:35:47 CET 2019
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 660")
+
+([Patologias_Cardio_Class10001] of  PPM
+
+	(ppm 70))
+
+([Patologias_Cardio_Class10002] of  Complejo+QRS
+
+	(Ciclo 1)
+	(Duracion 100)
+	(Fin 250)
+	(Inicio 150))
+
+([Patologias_Cardio_Class10003] of  Intervalo+QT
+
+	(Ciclo 1)
+	(Duracion 150)
+	(Fin 300)
+	(Inicio 150))
+
+([Patologias_Cardio_Class10004] of  Segmento+ST
+
+	(Ciclo 1)
+	(Duracion 100)
+	(Fin 300)
+	(Inicio 200))
+
+([Patologias_Cardio_Class10005] of  P
+
+	(Ciclo 1)
+	(Fin 150)
+	(Inicio 0)
+	(Pico 3.017))
+
+([Patologias_Cardio_Class10006] of  Q
+
+	(Ciclo 1)
+	(Fin 200)
+	(Inicio 150)
+	(Pico -0.45))
+
+([Patologias_Cardio_Class20007] of  R
+
+	(Ciclo 1)
+	(Fin 225)
+	(Inicio 200)
+	(Pico 6.08))
+
+([Patologias_Cardio_Class30008] of  S
+
+	(Ciclo 1)
+	(Fin 250)
+	(Inicio 225)
+	(Pico -0.87))
+
+([Patologias_Cardio_Class30009] of  T
+
+	(Ciclo 1)
+	(Fin 300)
+	(Inicio 250)
+	(Pico 2.09))
+
+([Patologias_Cardio_Class30011] of  Ciclos
+
+	(ciclos 19))
+
+([Patologias_Cardio_Class30012] of  Atrial+Flutter
+
+	(Ciclo 4))
+
+([Patologias_Cardio_Class30013] of  Hipocalcemia
+
+	(Ciclo 2))
+
+([Patologias_Cardio_Class30014] of  Hipopotasemia
+
+	(Ciclo 6))
+
+([Patologias_Cardio_Class30015] of  Infarto+Agudo+de+Miocardio+temprano
+
+	(Ciclo 12))
+
+([Patologias_Cardio_Class30016] of  Isquemia+Coronaria
+
+	(Ciclo 5))
+
+([Patologias_Cardio_Class30017] of  Premature+Ventricular+Contraction
+
+	(Ciclo 9))
+
+([Patologias_Cardio_Class30018] of  Bradicardia+Sinus
+
+	(ppm 45))
+
+([Patologias_Cardio_Class30019] of  Tachycardia+Sinus
+
+	(ppm 145))
