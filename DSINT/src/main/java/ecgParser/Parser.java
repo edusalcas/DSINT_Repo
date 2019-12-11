@@ -29,8 +29,6 @@ public class Parser {
 
 		KieServices ks = KieServices.Factory.get();
 		KieContainer kContainer = ks.getKieClasspathContainer();
-		System.out.println(kContainer.verify().getMessages().toString());
-
 		KieSession kSession = kContainer.newKieSession("ksession-rules");
 
 		try {
@@ -58,7 +56,7 @@ public class Parser {
 			line = reader.readLine();
 			
 			//Creamos el fichero de salida
-			PrintWriter writer = new PrintWriter("files/output-file.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter("output-file.txt", "UTF-8");
 			writer.println("Fichero de salida ECG: ");
 			kSession.insert(writer);
 			while (line != null) {

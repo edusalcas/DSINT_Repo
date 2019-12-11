@@ -2,8 +2,6 @@
 package rules
 
 import domain.*;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 rule "Hypokalemia"
 	when

@@ -9,7 +9,7 @@ public class Test {
 		Scanner s = new Scanner(System.in);
 		System.out.println("¿Qué ECG quieres analizar?");
 		String input = s.nextLine();
-		Parser.readFile("files/" + input);
+		Parser.readFile(input);
 		s.close();
 	}
 }
